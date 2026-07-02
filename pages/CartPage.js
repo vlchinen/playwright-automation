@@ -12,6 +12,7 @@ class CartPage {
 
         this.cartLink = page.locator('.shopping_cart_link');
 
+        
     }
 
     getProduct(productName){
@@ -23,7 +24,7 @@ class CartPage {
             });
 
     }
-    
+
     async removeProduct(productName){
 
         const product = this.page

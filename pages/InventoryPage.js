@@ -18,6 +18,11 @@ class InventoryPage {
         
     }
 
+    async goto() {
+
+        await this.page.goto('/inventory.html');
+
+    }
 
     async addProduct(productName){
 
@@ -41,13 +46,24 @@ class InventoryPage {
             .click();
 
     }
+    
+    async getProductPrice(productName) {
 
-    async openCart(){
+        const product = this.page
+            .locator('.inventory_item')
+            .filter({
+                has: this.page.locator(
+                    '.inventory_item_name',
+                    { hasText: productName }
+                )
+            });
 
-        await this.cartLink.click();
+        const price = await product
+            .locator('.inventory_item_price')
+            .textContent();
 
+        return price;
     }
-
 
     async logout(){
 
